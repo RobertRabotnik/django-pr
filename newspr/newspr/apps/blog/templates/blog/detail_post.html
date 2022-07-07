@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="text-align:center;">{{post.title}}</h2><br>
+<p style="text-align:center;">{{post.text}}</p><br>
+
+<hr>
+
+<div style="margin-left:5px ;">
+    <em>Дата публикации: {{post.pub_date}}</em><br>
+    <p>Просмотры поста: {{post.views}}</p>
+    <h6>Категория поста: <a href="{% url 'blog:category_posts' post.category.slug %}">{{post.category}} </a></h6><br>
+    {% if post.image %}
+        <img src="{{post.image.url}}" width="580" height="370" ><br><br><br>
+    {% endif %}
+</div>
+
+<a class="btn btn-info" href="{% url 'blog:add_comment' post.pk %}">Оставить комментарий</a><br><br>
+
+<h3>Комментарии:</h3>
+<hr>
+{% for comment in comments %}
+ <h5>{{comment.user}}</h5>
+ <p>{{comment.text}}</p>
+{% endfor %}
+
+{% endblock %}

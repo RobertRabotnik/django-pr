@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="text-align: center;position:relative;top:200px">{{user.username|title}}, вы хотите выйти из аккаунта?</h2>
+
+<form action="{% url 'users:logout' %}" method="POST">
+    {% csrf_token %}
+    <center><div style="position:relative;top:240px;">
+        <input style="width:200px" value="Назад" class="btn btn-success" type="button" onclick="history.back()">
+        <button style="width:200px" class="btn btn-danger" type="submit">Выйти</button>
+    </div></center>
+</form>
+
+{% endblock %}

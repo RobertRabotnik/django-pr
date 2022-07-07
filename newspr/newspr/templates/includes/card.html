@@ -1,0 +1,14 @@
+{% for post in posts %}
+<br>
+<div class="card" style="width:500px;margin:auto">
+    {% if post.image %}
+        <img src="{{post.image.url}}" width="500" height="330" class="card-img-top" alt="">
+    {% endif %}
+    <div class="card-body">
+      <h5 class="card-title">{{post.title}}</h5>
+      <p class="card-text">{{post.text|truncatechars:100}}</p>
+      <em>{{post.pub_date}}</em><br>
+      <a href="{% url 'blog:detail_post' post.id %}" class="btn btn-primary">Перейти</a>
+    </div>
+  </div>
+{% endfor %}
