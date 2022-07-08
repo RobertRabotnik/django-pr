@@ -16,6 +16,8 @@ import os,sys
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+# Это для того, чтобы django искал наши приложеия в папке apps
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.insert(0,(os.path.join(PROJECT_ROOT,'apps')))
 
@@ -47,7 +49,7 @@ INSTALLED_APPS = [
 ]
 
 
-
+# Посредники между запросом и ответом
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -58,16 +60,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Путь к корневому url-конфигу 
 ROOT_URLCONF = 'newspr.urls'
 
+#Настройка шаблонов
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(PROJECT_ROOT,'templates')
+            os.path.join(PROJECT_ROOT,'templates') # Допольнительные места, где django будет искать шаблоны, в данном случае в PROJECT_ROOT, папке templates
         ],
-        'APP_DIRS': True,
+        'APP_DIRS': True, # Поиск шаблонов в приложении
         'OPTIONS': {
+            # Переменные, которые можно использовать в шаблоне по умолчанию
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -84,6 +89,8 @@ WSGI_APPLICATION = 'newspr.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+
+# Настройка базы данных, у меня postgres, по умолчанию sqlite
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -98,6 +105,8 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
+
+#  Валидаторы для паролей (валидаторы - пидоры, проверяющие что-то на валидность, соответсвие каким-то правилам, требованиям, что-то типо того)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -118,12 +127,16 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
+# язык
 LANGUAGE_CODE = 'ru'
 
+# Использование кастомной модели пользователя, которую я сам создал
 AUTH_USER_MODEL = 'users.CustomUser'
 
+# Часовой пояс
 TIME_ZONE = 'Europe/Moscow'
 
+# Это тоже связано с настройкой часового пояса
 USE_I18N = True
 
 USE_TZ = True
